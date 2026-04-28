@@ -2,16 +2,18 @@ class HarnessLauncher < Formula
   desc "Universal launcher for kilhyeonjun/gameduo harness repos"
   homepage "https://github.com/kilhyeonjun/harness-launcher"
   url "https://github.com/kilhyeonjun/harness-launcher.git",
-      tag: "v0.1.4"
-  version "0.1.4"
+      tag: "v0.2.0"
+  version "0.2.0"
   license "MIT"
 
   def install
-    # Co-install both files in share/ so aliases.zsh resolves $_HARNESS_LAUNCHER_BIN
-    # to the same directory as launcher.sh (matches repo layout expectations).
+    # Co-install all binaries in share/ so aliases.zsh resolves $_HARNESS_LAUNCHER_BIN
+    # to the same directory as launcher.sh and codex-home-prepare.sh.
     (share/"harness-launcher").install "bin/launcher.sh"
     (share/"harness-launcher").install "bin/aliases.zsh"
+    (share/"harness-launcher").install "bin/codex-home-prepare.sh"
     chmod 0755, share/"harness-launcher/launcher.sh"
+    chmod 0755, share/"harness-launcher/codex-home-prepare.sh"
   end
 
   def caveats
@@ -27,5 +29,6 @@ class HarnessLauncher < Formula
   test do
     assert_predicate share/"harness-launcher/aliases.zsh", :exist?
     assert_predicate share/"harness-launcher/launcher.sh", :executable?
+    assert_predicate share/"harness-launcher/codex-home-prepare.sh", :executable?
   end
 end
