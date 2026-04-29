@@ -2,8 +2,8 @@ class HarnessLauncher < Formula
   desc "Universal launcher for kilhyeonjun/gameduo harness repos"
   homepage "https://github.com/kilhyeonjun/harness-launcher"
   url "https://github.com/kilhyeonjun/harness-launcher.git",
-      tag: "v0.7.1"
-  version "0.7.1"
+      tag: "v0.7.2"
+  version "0.7.2"
   license "MIT"
 
   def install
@@ -12,9 +12,11 @@ class HarnessLauncher < Formula
     (share/"harness-launcher").install "bin/launcher.sh"
     (share/"harness-launcher").install "bin/aliases.zsh"
     (share/"harness-launcher").install "bin/codex-home-prepare.sh"
+    (share/"harness-launcher").install "bin/codex-hook-adapter.sh"
     (share/"harness-launcher").install "bin/codex-migrate-to-symlinks.sh"
     chmod 0755, share/"harness-launcher/launcher.sh"
     chmod 0755, share/"harness-launcher/codex-home-prepare.sh"
+    chmod 0755, share/"harness-launcher/codex-hook-adapter.sh"
     chmod 0755, share/"harness-launcher/codex-migrate-to-symlinks.sh"
   end
 
@@ -32,6 +34,7 @@ class HarnessLauncher < Formula
     assert_predicate share/"harness-launcher/aliases.zsh", :exist?
     assert_predicate share/"harness-launcher/launcher.sh", :executable?
     assert_predicate share/"harness-launcher/codex-home-prepare.sh", :executable?
+    assert_predicate share/"harness-launcher/codex-hook-adapter.sh", :executable?
     assert_predicate share/"harness-launcher/codex-migrate-to-symlinks.sh", :executable?
   end
 end
