@@ -2,8 +2,8 @@ class HarnessLauncher < Formula
   desc "Universal launcher for kilhyeonjun/gameduo harness repos"
   homepage "https://github.com/kilhyeonjun/harness-launcher"
   url "https://github.com/kilhyeonjun/harness-launcher.git",
-      tag: "v0.7.2"
-  version "0.7.2"
+      tag: "v0.7.3"
+  version "0.7.3"
   license "MIT"
 
   def install
