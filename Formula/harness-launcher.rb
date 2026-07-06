@@ -2,7 +2,7 @@ class HarnessLauncher < Formula
   desc "Universal launcher for kilhyeonjun/gameduo harness repos"
   homepage "https://github.com/kilhyeonjun/harness-launcher"
   url "https://github.com/kilhyeonjun/harness-launcher.git",
-      tag: "v0.8.14"
+      tag: "v0.9.0"
   license "MIT"
 
   def install
@@ -13,10 +13,12 @@ class HarnessLauncher < Formula
     pkgshare.install "bin/codex-home-prepare.sh"
     pkgshare.install "bin/codex-hook-adapter.sh"
     pkgshare.install "bin/codex-migrate-to-symlinks.sh"
+    pkgshare.install "bin/kiro-home-prepare.sh"
     chmod 0755, pkgshare/"launcher.sh"
     chmod 0755, pkgshare/"codex-home-prepare.sh"
     chmod 0755, pkgshare/"codex-hook-adapter.sh"
     chmod 0755, pkgshare/"codex-migrate-to-symlinks.sh"
+    chmod 0755, pkgshare/"kiro-home-prepare.sh"
   end
 
   def caveats
@@ -35,5 +37,6 @@ class HarnessLauncher < Formula
     assert_predicate pkgshare/"codex-home-prepare.sh", :executable?
     assert_predicate pkgshare/"codex-hook-adapter.sh", :executable?
     assert_predicate pkgshare/"codex-migrate-to-symlinks.sh", :executable?
+    assert_predicate pkgshare/"kiro-home-prepare.sh", :executable?
   end
 end
