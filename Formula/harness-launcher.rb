@@ -1,8 +1,8 @@
 class HarnessLauncher < Formula
-  desc "Universal launcher for kilhyeonjun/gameduo harness repos"
+  desc "Profile-aware Zsh launcher for AI coding CLIs"
   homepage "https://github.com/kilhyeonjun/harness-launcher"
   url "https://github.com/kilhyeonjun/harness-launcher.git",
-      tag: "v0.9.4"
+      tag: "v0.9.5"
   license "MIT"
 
   def install
@@ -25,9 +25,7 @@ class HarnessLauncher < Formula
     <<~EOS
       Add to ~/.zshrc:
         source "#{pkgshare}/aliases.zsh"
-        harness_register "$HOME/kilhyeonjun-harness"
-        harness_register "$HOME/gameduo-personal-harness"
-        harness_register "$HOME/gameduo-platform-harness"
+        harness_register "/path/to/your/harness"
     EOS
   end
 
