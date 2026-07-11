@@ -2,12 +2,12 @@ class HarnessLauncher < Formula
   desc "Profile-aware Zsh launcher for AI coding CLIs"
   homepage "https://github.com/kilhyeonjun/harness-launcher"
   url "https://github.com/kilhyeonjun/harness-launcher.git",
-      tag:      "v0.10.0",
-      revision: "b860e3490837ac420f6039d3371c2cef1dd1dd2e"
+      tag:      "v0.10.1",
+      revision: "51d2cec2c81e50994260da198640805b83a7f1a5"
   license "MIT"
 
   depends_on :macos
-  depends_on "python@3.14"
+  depends_on "python@3.13"
 
   def install
     # Co-install all binaries in share/ so aliases.zsh resolves $_HARNESS_LAUNCHER_BIN
