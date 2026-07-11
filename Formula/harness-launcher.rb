@@ -2,8 +2,12 @@ class HarnessLauncher < Formula
   desc "Profile-aware Zsh launcher for AI coding CLIs"
   homepage "https://github.com/kilhyeonjun/harness-launcher"
   url "https://github.com/kilhyeonjun/harness-launcher.git",
-      tag: "v0.9.5"
+      tag:      "v0.10.0",
+      revision: "b860e3490837ac420f6039d3371c2cef1dd1dd2e"
   license "MIT"
+
+  depends_on :macos
+  depends_on "python@3.14"
 
   def install
     # Co-install all binaries in share/ so aliases.zsh resolves $_HARNESS_LAUNCHER_BIN
@@ -11,11 +15,15 @@ class HarnessLauncher < Formula
     pkgshare.install "bin/launcher.sh"
     pkgshare.install "bin/aliases.zsh"
     pkgshare.install "bin/codex-home-prepare.sh"
+    pkgshare.install "bin/codex-surface.py"
+    pkgshare.install "bin/codex-surface-warm.py"
     pkgshare.install "bin/codex-hook-adapter.sh"
     pkgshare.install "bin/codex-migrate-to-symlinks.sh"
     pkgshare.install "bin/kiro-home-prepare.sh"
     chmod 0755, pkgshare/"launcher.sh"
     chmod 0755, pkgshare/"codex-home-prepare.sh"
+    chmod 0755, pkgshare/"codex-surface.py"
+    chmod 0755, pkgshare/"codex-surface-warm.py"
     chmod 0755, pkgshare/"codex-hook-adapter.sh"
     chmod 0755, pkgshare/"codex-migrate-to-symlinks.sh"
     chmod 0755, pkgshare/"kiro-home-prepare.sh"
@@ -33,6 +41,8 @@ class HarnessLauncher < Formula
     assert_path_exists pkgshare/"aliases.zsh"
     assert_predicate pkgshare/"launcher.sh", :executable?
     assert_predicate pkgshare/"codex-home-prepare.sh", :executable?
+    assert_predicate pkgshare/"codex-surface.py", :executable?
+    assert_predicate pkgshare/"codex-surface-warm.py", :executable?
     assert_predicate pkgshare/"codex-hook-adapter.sh", :executable?
     assert_predicate pkgshare/"codex-migrate-to-symlinks.sh", :executable?
     assert_predicate pkgshare/"kiro-home-prepare.sh", :executable?
