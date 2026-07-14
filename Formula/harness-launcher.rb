@@ -2,8 +2,8 @@ class HarnessLauncher < Formula
   desc "Profile-aware Zsh launcher for AI coding CLIs"
   homepage "https://github.com/kilhyeonjun/harness-launcher"
   url "https://github.com/kilhyeonjun/harness-launcher.git",
-      tag:      "v0.10.3",
-      revision: "8a3454118fc7f3ac49c514c3755019c9ac48e838"
+      tag:      "v0.11.0",
+      revision: "71fc98ca7d744951af07664b9d5a1527bbf84a95"
   license "MIT"
 
   depends_on :macos
@@ -14,6 +14,7 @@ class HarnessLauncher < Formula
     # to the same directory as launcher.sh and codex-home-prepare.sh.
     pkgshare.install "bin/launcher.sh"
     pkgshare.install "bin/aliases.zsh"
+    pkgshare.install "bin/harness-common.sh"
     pkgshare.install "bin/codex-home-prepare.sh"
     pkgshare.install "bin/codex-surface.py"
     pkgshare.install "bin/codex-surface-warm.py"
