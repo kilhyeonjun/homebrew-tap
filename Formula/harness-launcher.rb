@@ -2,8 +2,8 @@ class HarnessLauncher < Formula
   desc "Profile-aware Zsh launcher for AI coding CLIs"
   homepage "https://github.com/kilhyeonjun/harness-launcher"
   url "https://github.com/kilhyeonjun/harness-launcher.git",
-      tag:      "v0.13.0",
-      revision: "e8821daa6d36fcb82dd2f79b213f41403753dd9e"
+      tag:      "v0.14.0",
+      revision: "3d2a82121d44fac3d7955c1feb4beb434dbb8ae6"
   license "MIT"
 
   depends_on :macos
@@ -15,6 +15,7 @@ class HarnessLauncher < Formula
     pkgshare.install "bin/launcher.sh"
     pkgshare.install "bin/aliases.zsh"
     pkgshare.install "bin/harness-common.sh"
+    pkgshare.install "bin/subagent-model-map.tsv"
     pkgshare.install "bin/codex-home-prepare.sh"
     pkgshare.install "bin/codex-surface.py"
     pkgshare.install "bin/codex-surface-warm.py"
@@ -40,6 +41,7 @@ class HarnessLauncher < Formula
 
   test do
     assert_path_exists pkgshare/"aliases.zsh"
+    assert_path_exists pkgshare/"subagent-model-map.tsv"
     assert_predicate pkgshare/"launcher.sh", :executable?
     assert_predicate pkgshare/"codex-home-prepare.sh", :executable?
     assert_predicate pkgshare/"codex-surface.py", :executable?
