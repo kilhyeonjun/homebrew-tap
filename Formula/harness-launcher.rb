@@ -2,8 +2,8 @@ class HarnessLauncher < Formula
   desc "Profile-aware Zsh launcher for AI coding CLIs"
   homepage "https://github.com/kilhyeonjun/harness-launcher"
   url "https://github.com/kilhyeonjun/harness-launcher.git",
-      tag:      "v0.14.1",
-      revision: "0e0fe8916ddef31d36c064b7af70556f1f2a8e11"
+      tag:      "v0.15.0",
+      revision: "3d7a92ec5d3341f9f2ec1988c1b39268d6213f5f"
   license "MIT"
 
   depends_on :macos
@@ -20,6 +20,7 @@ class HarnessLauncher < Formula
     pkgshare.install "bin/codex-surface.py"
     pkgshare.install "bin/codex-surface-warm.py"
     pkgshare.install "bin/codex-hook-adapter.sh"
+    pkgshare.install "bin/codex-cmux-title-sync.py"
     pkgshare.install "bin/codex-migrate-to-symlinks.sh"
     pkgshare.install "bin/kiro-home-prepare.sh"
     chmod 0755, pkgshare/"launcher.sh"
@@ -27,6 +28,7 @@ class HarnessLauncher < Formula
     chmod 0755, pkgshare/"codex-surface.py"
     chmod 0755, pkgshare/"codex-surface-warm.py"
     chmod 0755, pkgshare/"codex-hook-adapter.sh"
+    chmod 0755, pkgshare/"codex-cmux-title-sync.py"
     chmod 0755, pkgshare/"codex-migrate-to-symlinks.sh"
     chmod 0755, pkgshare/"kiro-home-prepare.sh"
   end
@@ -47,6 +49,7 @@ class HarnessLauncher < Formula
     assert_predicate pkgshare/"codex-surface.py", :executable?
     assert_predicate pkgshare/"codex-surface-warm.py", :executable?
     assert_predicate pkgshare/"codex-hook-adapter.sh", :executable?
+    assert_predicate pkgshare/"codex-cmux-title-sync.py", :executable?
     assert_predicate pkgshare/"codex-migrate-to-symlinks.sh", :executable?
     assert_predicate pkgshare/"kiro-home-prepare.sh", :executable?
   end
