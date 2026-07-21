@@ -2,8 +2,8 @@ class HarnessLauncher < Formula
   desc "Profile-aware Zsh launcher for AI coding CLIs"
   homepage "https://github.com/kilhyeonjun/harness-launcher"
   url "https://github.com/kilhyeonjun/harness-launcher.git",
-      tag:      "v0.15.2",
-      revision: "7b514ee0a763fa62b16eae689d794cb74fd0899e"
+      tag:      "v0.16.0",
+      revision: "de0ae157fe7e2a88bae5ae679852995e5a04c643"
   license "MIT"
 
   depends_on :macos
@@ -23,6 +23,7 @@ class HarnessLauncher < Formula
     pkgshare.install "bin/codex-cmux-title-sync.py"
     pkgshare.install "bin/codex-migrate-to-symlinks.sh"
     pkgshare.install "bin/kiro-home-prepare.sh"
+    pkgshare.install "bin/harness-exec"
     chmod 0755, pkgshare/"launcher.sh"
     chmod 0755, pkgshare/"codex-home-prepare.sh"
     chmod 0755, pkgshare/"codex-surface.py"
@@ -31,6 +32,8 @@ class HarnessLauncher < Formula
     chmod 0755, pkgshare/"codex-cmux-title-sync.py"
     chmod 0755, pkgshare/"codex-migrate-to-symlinks.sh"
     chmod 0755, pkgshare/"kiro-home-prepare.sh"
+    chmod 0755, pkgshare/"harness-exec"
+    bin.install_symlink pkgshare/"harness-exec"
   end
 
   def caveats
@@ -38,6 +41,9 @@ class HarnessLauncher < Formula
       Add to ~/.zshrc:
         source "#{pkgshare}/aliases.zsh"
         harness_register "/path/to/your/harness"
+
+      External orchestrators:
+        harness-exec "/path/to/your/harness" --cwd . codex base
     EOS
   end
 
@@ -52,5 +58,7 @@ class HarnessLauncher < Formula
     assert_predicate pkgshare/"codex-cmux-title-sync.py", :executable?
     assert_predicate pkgshare/"codex-migrate-to-symlinks.sh", :executable?
     assert_predicate pkgshare/"kiro-home-prepare.sh", :executable?
+    assert_predicate pkgshare/"harness-exec", :executable?
+    assert_predicate bin/"harness-exec", :symlink?
   end
 end
