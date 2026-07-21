@@ -2,8 +2,8 @@ class HarnessLauncher < Formula
   desc "Profile-aware Zsh launcher for AI coding CLIs"
   homepage "https://github.com/kilhyeonjun/harness-launcher"
   url "https://github.com/kilhyeonjun/harness-launcher.git",
-      tag:      "v0.17.1",
-      revision: "243bc2e6ef382db7fff80f29f60836424df419b4"
+      tag:      "v0.18.0",
+      revision: "6f9f94c3b32390a98b95465f80de7e6ccd67cffd"
   license "MIT"
 
   depends_on :macos
@@ -25,6 +25,7 @@ class HarnessLauncher < Formula
     pkgshare.install "bin/kiro-home-prepare.sh"
     pkgshare.install "bin/kiro-observability-hook.py"
     pkgshare.install "bin/harness-exec"
+    pkgshare.install "bin/harness-profile"
     chmod 0755, pkgshare/"launcher.sh"
     chmod 0755, pkgshare/"codex-home-prepare.sh"
     chmod 0755, pkgshare/"codex-surface.py"
@@ -35,7 +36,9 @@ class HarnessLauncher < Formula
     chmod 0755, pkgshare/"kiro-home-prepare.sh"
     chmod 0755, pkgshare/"kiro-observability-hook.py"
     chmod 0755, pkgshare/"harness-exec"
+    chmod 0755, pkgshare/"harness-profile"
     bin.install_symlink pkgshare/"harness-exec"
+    bin.install_symlink pkgshare/"harness-profile"
   end
 
   def caveats
@@ -45,7 +48,8 @@ class HarnessLauncher < Formula
         harness_register "/path/to/your/harness"
 
       External orchestrators:
-        harness-exec "/path/to/your/harness" --cwd . codex base
+        harness-profile register "/path/to/your/harness"
+        <prefix> codex base
     EOS
   end
 
@@ -62,6 +66,8 @@ class HarnessLauncher < Formula
     assert_predicate pkgshare/"kiro-home-prepare.sh", :executable?
     assert_predicate pkgshare/"kiro-observability-hook.py", :executable?
     assert_predicate pkgshare/"harness-exec", :executable?
+    assert_predicate pkgshare/"harness-profile", :executable?
     assert_predicate bin/"harness-exec", :symlink?
+    assert_predicate bin/"harness-profile", :symlink?
   end
 end
