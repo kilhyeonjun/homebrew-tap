@@ -2,8 +2,8 @@ class HarnessLauncher < Formula
   desc "Profile-aware Zsh launcher for AI coding CLIs"
   homepage "https://github.com/kilhyeonjun/harness-launcher"
   url "https://github.com/kilhyeonjun/harness-launcher.git",
-      tag:      "v0.18.0",
-      revision: "6f9f94c3b32390a98b95465f80de7e6ccd67cffd"
+      tag:      "v0.19.0",
+      revision: "28583cccdf9f0cc8d7f3e3717868829117d385e4"
   license "MIT"
 
   depends_on :macos
@@ -24,6 +24,7 @@ class HarnessLauncher < Formula
     pkgshare.install "bin/codex-migrate-to-symlinks.sh"
     pkgshare.install "bin/kiro-home-prepare.sh"
     pkgshare.install "bin/kiro-observability-hook.py"
+    pkgshare.install "bin/harness-auto"
     pkgshare.install "bin/harness-exec"
     pkgshare.install "bin/harness-profile"
     chmod 0755, pkgshare/"launcher.sh"
@@ -35,8 +36,10 @@ class HarnessLauncher < Formula
     chmod 0755, pkgshare/"codex-migrate-to-symlinks.sh"
     chmod 0755, pkgshare/"kiro-home-prepare.sh"
     chmod 0755, pkgshare/"kiro-observability-hook.py"
+    chmod 0755, pkgshare/"harness-auto"
     chmod 0755, pkgshare/"harness-exec"
     chmod 0755, pkgshare/"harness-profile"
+    bin.install_symlink pkgshare/"harness-auto"
     bin.install_symlink pkgshare/"harness-exec"
     bin.install_symlink pkgshare/"harness-profile"
   end
@@ -50,6 +53,7 @@ class HarnessLauncher < Formula
       External orchestrators:
         harness-profile register "/path/to/your/harness"
         <prefix> codex base
+        harness-auto codex base
     EOS
   end
 
@@ -65,8 +69,10 @@ class HarnessLauncher < Formula
     assert_predicate pkgshare/"codex-migrate-to-symlinks.sh", :executable?
     assert_predicate pkgshare/"kiro-home-prepare.sh", :executable?
     assert_predicate pkgshare/"kiro-observability-hook.py", :executable?
+    assert_predicate pkgshare/"harness-auto", :executable?
     assert_predicate pkgshare/"harness-exec", :executable?
     assert_predicate pkgshare/"harness-profile", :executable?
+    assert_predicate bin/"harness-auto", :symlink?
     assert_predicate bin/"harness-exec", :symlink?
     assert_predicate bin/"harness-profile", :symlink?
   end
