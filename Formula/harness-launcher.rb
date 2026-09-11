@@ -2,8 +2,8 @@ class HarnessLauncher < Formula
   desc "Profile-aware Zsh launcher for AI coding CLIs"
   homepage "https://github.com/kilhyeonjun/harness-launcher"
   url "https://github.com/kilhyeonjun/harness-launcher.git",
-      tag:      "v0.29.5",
-      revision: "c1263ccbee1497a69a1e845fed993df1b321f84c"
+      tag:      "v0.30.0",
+      revision: "7664106acdb5e60cc5d693960643a472ac78b6af"
   license "MIT"
 
   depends_on :macos
@@ -30,6 +30,7 @@ class HarnessLauncher < Formula
     pkgshare.install "bin/harness-auto"
     pkgshare.install "bin/harness-exec"
     pkgshare.install "bin/harness-profile"
+    pkgshare.install "bin/session-isolation.sh"
     chmod 0755, pkgshare/"launcher.sh"
     chmod 0755, pkgshare/"codex-home-prepare.sh"
     chmod 0755, pkgshare/"codex-surface.py"
@@ -44,9 +45,11 @@ class HarnessLauncher < Formula
     chmod 0755, pkgshare/"harness-auto"
     chmod 0755, pkgshare/"harness-exec"
     chmod 0755, pkgshare/"harness-profile"
+    chmod 0755, pkgshare/"session-isolation.sh"
     bin.install_symlink pkgshare/"harness-auto"
     bin.install_symlink pkgshare/"harness-exec"
     bin.install_symlink pkgshare/"harness-profile"
+    bin.install_symlink pkgshare/"session-isolation.sh" => "harness-session"
   end
 
   def caveats
@@ -59,6 +62,10 @@ class HarnessLauncher < Formula
         harness-profile register "/path/to/your/harness"
         <prefix> codex base
         harness-auto codex base
+
+      Isolated session recovery:
+        harness-session list
+        harness-session recover <uuid>
     EOS
   end
 
@@ -80,8 +87,10 @@ class HarnessLauncher < Formula
     assert_predicate pkgshare/"harness-auto", :executable?
     assert_predicate pkgshare/"harness-exec", :executable?
     assert_predicate pkgshare/"harness-profile", :executable?
+    assert_predicate pkgshare/"session-isolation.sh", :executable?
     assert_predicate bin/"harness-auto", :symlink?
     assert_predicate bin/"harness-exec", :symlink?
     assert_predicate bin/"harness-profile", :symlink?
+    assert_predicate bin/"harness-session", :symlink?
   end
 end
