@@ -2,8 +2,8 @@ class HarnessLauncher < Formula
   desc "Profile-aware Zsh launcher for AI coding CLIs"
   homepage "https://github.com/kilhyeonjun/harness-launcher"
   url "https://github.com/kilhyeonjun/harness-launcher.git",
-      tag:      "v0.31.4",
-      revision: "4576b9d2ef265727398f066ce8736190f100322f"
+      tag:      "v0.31.5",
+      revision: "84d144e8aa84fb00c1c1b1f188e2c78b8d9f1b40"
   license "MIT"
 
   depends_on :macos
@@ -20,6 +20,7 @@ class HarnessLauncher < Formula
     pkgshare.install "bin/codex-surface.py"
     pkgshare.install "bin/codex-surface-warm.py"
     pkgshare.install "bin/codex_global_mcp.py"
+    pkgshare.install "bin/mcp_paths.py"
     pkgshare.install "bin/codex-hook-adapter.sh"
     pkgshare.install "bin/codex-pretool-adapter.py"
     pkgshare.install "bin/codex-cmux-title-sync.py"
@@ -84,6 +85,7 @@ class HarnessLauncher < Formula
     assert_predicate pkgshare/"codex-surface.py", :executable?
     assert_predicate pkgshare/"codex-surface-warm.py", :executable?
     assert_path_exists pkgshare/"codex_global_mcp.py"
+    assert_path_exists pkgshare/"mcp_paths.py"
     assert_predicate pkgshare/"codex-hook-adapter.sh", :executable?
     assert_predicate pkgshare/"codex-pretool-adapter.py", :executable?
     assert_predicate pkgshare/"codex-cmux-title-sync.py", :executable?
