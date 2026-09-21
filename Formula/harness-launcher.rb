@@ -2,8 +2,8 @@ class HarnessLauncher < Formula
   desc "Profile-aware Zsh launcher for AI coding CLIs"
   homepage "https://github.com/kilhyeonjun/harness-launcher"
   url "https://github.com/kilhyeonjun/harness-launcher.git",
-      tag:      "v0.31.2",
-      revision: "ca6913e8b08b7df7a812c1017216f3eb63359a78"
+      tag:      "v0.31.3",
+      revision: "eef14816a21f2cfdc8b6ae875f872fbfc077117d"
   license "MIT"
 
   depends_on :macos
@@ -59,6 +59,11 @@ class HarnessLauncher < Formula
       Add to ~/.zshrc:
         source "#{pkgshare}/aliases.zsh"
         harness_register "/path/to/your/harness"
+
+      Optional plain codex/claude routing by current directory:
+        harness_shell_enable
+
+      Use `command codex` or `command claude` to bypass routing explicitly.
 
       External orchestrators:
         harness-profile register "/path/to/your/harness"
