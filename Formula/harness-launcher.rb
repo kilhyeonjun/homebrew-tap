@@ -28,6 +28,12 @@ class HarnessLauncher < Formula
     pkgshare.install "bin/kiro-home-prepare.sh"
     pkgshare.install "bin/kiro-observability-hook.py"
     pkgshare.install "bin/harness-auto"
+    # v0.31.2+ splits profile selection from the thin Zsh entrypoint. Keep
+    # this conditional while v0.31.1 is still the pinned release.
+    if File.file?("bin/harness_auto.py") && File.file?("bin/harness_profile_resolver.py")
+      pkgshare.install "bin/harness_auto.py"
+      pkgshare.install "bin/harness_profile_resolver.py"
+    end
     pkgshare.install "bin/harness-exec"
     pkgshare.install "bin/harness-profile"
     pkgshare.install "bin/session-isolation.sh"
@@ -85,6 +91,10 @@ class HarnessLauncher < Formula
     assert_predicate pkgshare/"kiro-home-prepare.sh", :executable?
     assert_predicate pkgshare/"kiro-observability-hook.py", :executable?
     assert_predicate pkgshare/"harness-auto", :executable?
+    if version >= Version.new("0.31.2")
+      assert_path_exists pkgshare/"harness_auto.py"
+      assert_path_exists pkgshare/"harness_profile_resolver.py"
+    end
     assert_predicate pkgshare/"harness-exec", :executable?
     assert_predicate pkgshare/"harness-profile", :executable?
     assert_predicate pkgshare/"session-isolation.sh", :executable?
