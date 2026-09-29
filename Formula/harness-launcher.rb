@@ -2,8 +2,8 @@ class HarnessLauncher < Formula
   desc "Profile-aware Zsh launcher for AI coding CLIs"
   homepage "https://github.com/kilhyeonjun/harness-launcher"
   url "https://github.com/kilhyeonjun/harness-launcher.git",
-      tag:      "v0.33.0",
-      revision: "9dda675479a80312b0afc2ad73264914689f08f3"
+      tag:      "v0.34.0",
+      revision: "ff311520736921bbcf98f94679928fd9933c66e4"
   license "MIT"
 
   depends_on :macos
@@ -36,6 +36,7 @@ class HarnessLauncher < Formula
     pkgshare.install "bin/harness-profile"
     pkgshare.install "bin/session-isolation.sh"
     (pkgshare/"docs").install "docs/orca-integration.md"
+    (pkgshare/"docs").install "docs/paseo-integration.md"
     chmod 0755, pkgshare/"launcher.sh"
     chmod 0755, pkgshare/"codex-home-prepare.sh"
     chmod 0755, pkgshare/"codex-surface.py"
@@ -90,6 +91,7 @@ class HarnessLauncher < Formula
     assert_path_exists pkgshare/"mcp_paths.py"
     assert_path_exists pkgshare/"orca_hooks_optin.py"
     assert_path_exists pkgshare/"docs/orca-integration.md"
+    assert_path_exists pkgshare/"docs/paseo-integration.md"
     assert_predicate pkgshare/"codex-hook-adapter.sh", :executable?
     assert_predicate pkgshare/"codex-pretool-adapter.py", :executable?
     assert_predicate pkgshare/"codex-cmux-title-sync.py", :executable?
