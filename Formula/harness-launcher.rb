@@ -2,8 +2,8 @@ class HarnessLauncher < Formula
   desc "Profile-aware Zsh launcher for AI coding CLIs"
   homepage "https://github.com/kilhyeonjun/harness-launcher"
   url "https://github.com/kilhyeonjun/harness-launcher.git",
-      tag:      "v0.32.0",
-      revision: "1f608e46734c7446c2f57d3ad10007fcffb81b78"
+      tag:      "v0.33.0",
+      revision: "9dda675479a80312b0afc2ad73264914689f08f3"
   license "MIT"
 
   depends_on :macos
@@ -21,6 +21,7 @@ class HarnessLauncher < Formula
     pkgshare.install "bin/codex-surface-warm.py"
     pkgshare.install "bin/codex_global_mcp.py"
     pkgshare.install "bin/mcp_paths.py"
+    pkgshare.install "bin/orca_hooks_optin.py"
     pkgshare.install "bin/codex-hook-adapter.sh"
     pkgshare.install "bin/codex-pretool-adapter.py"
     pkgshare.install "bin/codex-cmux-title-sync.py"
@@ -34,6 +35,7 @@ class HarnessLauncher < Formula
     pkgshare.install "bin/harness-exec"
     pkgshare.install "bin/harness-profile"
     pkgshare.install "bin/session-isolation.sh"
+    (pkgshare/"docs").install "docs/orca-integration.md"
     chmod 0755, pkgshare/"launcher.sh"
     chmod 0755, pkgshare/"codex-home-prepare.sh"
     chmod 0755, pkgshare/"codex-surface.py"
@@ -86,6 +88,8 @@ class HarnessLauncher < Formula
     assert_predicate pkgshare/"codex-surface-warm.py", :executable?
     assert_path_exists pkgshare/"codex_global_mcp.py"
     assert_path_exists pkgshare/"mcp_paths.py"
+    assert_path_exists pkgshare/"orca_hooks_optin.py"
+    assert_path_exists pkgshare/"docs/orca-integration.md"
     assert_predicate pkgshare/"codex-hook-adapter.sh", :executable?
     assert_predicate pkgshare/"codex-pretool-adapter.py", :executable?
     assert_predicate pkgshare/"codex-cmux-title-sync.py", :executable?
