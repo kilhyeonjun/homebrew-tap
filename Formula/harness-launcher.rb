@@ -2,8 +2,8 @@ class HarnessLauncher < Formula
   desc "Profile-aware Zsh launcher for AI coding CLIs"
   homepage "https://github.com/kilhyeonjun/harness-launcher"
   url "https://github.com/kilhyeonjun/harness-launcher.git",
-      tag:      "v0.36.0",
-      revision: "245e8e9eed409dccb830b731bd8c14d6ff22cc49"
+      tag:      "v0.37.1",
+      revision: "b9dd961a4f37492156ff57f28373d302fe3419cc"
   license "MIT"
 
   depends_on :macos
@@ -44,6 +44,8 @@ class HarnessLauncher < Formula
     (pkgshare/"docs").install "docs/orca-integration.md"
     (pkgshare/"docs").install "docs/paseo-integration.md"
     (pkgshare/"docs").install "docs/terminal-runtimes.md"
+    (pkgshare/"herdr-plugin").install "herdr-plugin/herdr-plugin.toml",
+                                      "herdr-plugin/harness_herdr_plugin.py"
     chmod 0755, pkgshare/"launcher.sh"
     chmod 0755, pkgshare/"codex-home-prepare.sh"
     chmod 0755, pkgshare/"codex-surface.py"
@@ -111,6 +113,9 @@ class HarnessLauncher < Formula
     assert_path_exists pkgshare/"docs/orca-integration.md"
     assert_path_exists pkgshare/"docs/paseo-integration.md"
     assert_path_exists pkgshare/"docs/terminal-runtimes.md"
+    assert_path_exists pkgshare/"herdr-plugin/herdr-plugin.toml"
+    assert_path_exists pkgshare/"herdr-plugin/harness_herdr_plugin.py"
+    assert_match 'id = "harness.launcher"', (pkgshare/"herdr-plugin/herdr-plugin.toml").read
     assert_predicate pkgshare/"codex-hook-adapter.sh", :executable?
     assert_predicate pkgshare/"codex-pretool-adapter.py", :executable?
     assert_predicate pkgshare/"codex-cmux-title-sync.py", :executable?
