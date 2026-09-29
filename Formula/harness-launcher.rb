@@ -2,8 +2,8 @@ class HarnessLauncher < Formula
   desc "Profile-aware Zsh launcher for AI coding CLIs"
   homepage "https://github.com/kilhyeonjun/harness-launcher"
   url "https://github.com/kilhyeonjun/harness-launcher.git",
-      tag:      "v0.35.0",
-      revision: "781541dd946f31e3fffb24012873806098606d4f"
+      tag:      "v0.36.0",
+      revision: "245e8e9eed409dccb830b731bd8c14d6ff22cc49"
   license "MIT"
 
   depends_on :macos
@@ -22,6 +22,7 @@ class HarnessLauncher < Formula
     pkgshare.install "bin/codex_global_mcp.py"
     pkgshare.install "bin/mcp_paths.py"
     pkgshare.install "bin/orca_hooks_optin.py"
+    pkgshare.install "bin/runtime_hooks_optin.py"
     pkgshare.install "bin/codex-hook-adapter.sh"
     pkgshare.install "bin/codex-pretool-adapter.py"
     pkgshare.install "bin/codex-cmux-title-sync.py"
@@ -39,8 +40,10 @@ class HarnessLauncher < Formula
     pkgshare.install "bin/harness-exec"
     pkgshare.install "bin/harness-profile"
     pkgshare.install "bin/session-isolation.sh"
+    pkgshare.install "bin/harness-session-provider-record"
     (pkgshare/"docs").install "docs/orca-integration.md"
     (pkgshare/"docs").install "docs/paseo-integration.md"
+    (pkgshare/"docs").install "docs/terminal-runtimes.md"
     chmod 0755, pkgshare/"launcher.sh"
     chmod 0755, pkgshare/"codex-home-prepare.sh"
     chmod 0755, pkgshare/"codex-surface.py"
@@ -59,12 +62,14 @@ class HarnessLauncher < Formula
     chmod 0755, pkgshare/"harness-exec"
     chmod 0755, pkgshare/"harness-profile"
     chmod 0755, pkgshare/"session-isolation.sh"
+    chmod 0755, pkgshare/"harness-session-provider-record"
     bin.install_symlink pkgshare/"harness-auto"
     bin.install_symlink pkgshare/"harness-codex"
     bin.install_symlink pkgshare/"harness-paseo"
     bin.install_symlink pkgshare/"harness-exec"
     bin.install_symlink pkgshare/"harness-profile"
     bin.install_symlink pkgshare/"session-isolation.sh" => "harness-session"
+    bin.install_symlink pkgshare/"harness-session-provider-record"
   end
 
   def caveats
@@ -102,8 +107,10 @@ class HarnessLauncher < Formula
     assert_path_exists pkgshare/"codex_global_mcp.py"
     assert_path_exists pkgshare/"mcp_paths.py"
     assert_path_exists pkgshare/"orca_hooks_optin.py"
+    assert_path_exists pkgshare/"runtime_hooks_optin.py"
     assert_path_exists pkgshare/"docs/orca-integration.md"
     assert_path_exists pkgshare/"docs/paseo-integration.md"
+    assert_path_exists pkgshare/"docs/terminal-runtimes.md"
     assert_predicate pkgshare/"codex-hook-adapter.sh", :executable?
     assert_predicate pkgshare/"codex-pretool-adapter.py", :executable?
     assert_predicate pkgshare/"codex-cmux-title-sync.py", :executable?
@@ -121,11 +128,13 @@ class HarnessLauncher < Formula
     assert_predicate pkgshare/"harness-exec", :executable?
     assert_predicate pkgshare/"harness-profile", :executable?
     assert_predicate pkgshare/"session-isolation.sh", :executable?
+    assert_predicate pkgshare/"harness-session-provider-record", :executable?
     assert_predicate bin/"harness-auto", :symlink?
     assert_predicate bin/"harness-codex", :symlink?
     assert_predicate bin/"harness-paseo", :symlink?
     assert_predicate bin/"harness-exec", :symlink?
     assert_predicate bin/"harness-profile", :symlink?
     assert_predicate bin/"harness-session", :symlink?
+    assert_predicate bin/"harness-session-provider-record", :symlink?
   end
 end
