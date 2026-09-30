@@ -2,8 +2,8 @@ class HarnessLauncher < Formula
   desc "Profile-aware Zsh launcher for AI coding CLIs"
   homepage "https://github.com/kilhyeonjun/harness-launcher"
   url "https://github.com/kilhyeonjun/harness-launcher.git",
-      tag:      "v0.38.1",
-      revision: "4dbda6254c79a710ce588dc33ac8e31236972a2e"
+      tag:      "v0.39.0",
+      revision: "5271463f89a45ce4ea8adf38f8c3bce92057a090"
   license "MIT"
 
   depends_on :macos
@@ -18,11 +18,13 @@ class HarnessLauncher < Formula
     (pkgshare/"docs").install "docs/orca-integration.md"
     (pkgshare/"docs").install "docs/paseo-integration.md"
     (pkgshare/"docs").install "docs/terminal-runtimes.md"
+    (pkgshare/"docs").install "docs/herdr-web-ui.md"
     (pkgshare/"herdr-plugin").install "herdr-plugin/herdr-plugin.toml",
                                       "herdr-plugin/harness_herdr_plugin.py"
     bin.install_symlink pkgshare/"harness-auto"
     bin.install_symlink pkgshare/"harness-codex"
     bin.install_symlink pkgshare/"harness-paseo"
+    bin.install_symlink pkgshare/"harness-herdr-web"
     bin.install_symlink pkgshare/"harness-exec"
     bin.install_symlink pkgshare/"harness-profile"
     bin.install_symlink pkgshare/"session-isolation.sh" => "harness-session"
@@ -42,6 +44,9 @@ class HarnessLauncher < Formula
 
       SDK hosts (Paseo):
         harness-paseo sync --reload
+
+      herdr web ui, local-only behind a token:
+        harness-herdr-web install
 
       External orchestrators:
         harness-profile register "/path/to/your/harness"
@@ -70,6 +75,7 @@ class HarnessLauncher < Formula
     assert_path_exists pkgshare/"docs/orca-integration.md"
     assert_path_exists pkgshare/"docs/paseo-integration.md"
     assert_path_exists pkgshare/"docs/terminal-runtimes.md"
+    assert_path_exists pkgshare/"docs/herdr-web-ui.md"
     assert_path_exists pkgshare/"herdr-plugin/herdr-plugin.toml"
     assert_path_exists pkgshare/"herdr-plugin/harness_herdr_plugin.py"
     assert_match 'id = "harness.launcher"', (pkgshare/"herdr-plugin/herdr-plugin.toml").read
@@ -84,6 +90,8 @@ class HarnessLauncher < Formula
     assert_predicate pkgshare/"harness-codex", :executable?
     assert_predicate pkgshare/"harness-paseo", :executable?
     assert_path_exists pkgshare/"harness_paseo.py"
+    assert_predicate pkgshare/"harness-herdr-web", :executable?
+    assert_path_exists pkgshare/"harness_herdr_web.py"
     assert_predicate pkgshare/"codex-app-server-guard.py", :executable?
     assert_path_exists pkgshare/"harness_auto.py"
     assert_path_exists pkgshare/"harness_profile_resolver.py"
@@ -94,6 +102,7 @@ class HarnessLauncher < Formula
     assert_predicate bin/"harness-auto", :symlink?
     assert_predicate bin/"harness-codex", :symlink?
     assert_predicate bin/"harness-paseo", :symlink?
+    assert_predicate bin/"harness-herdr-web", :symlink?
     assert_predicate bin/"harness-exec", :symlink?
     assert_predicate bin/"harness-profile", :symlink?
     assert_predicate bin/"harness-session", :symlink?
