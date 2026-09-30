@@ -2,8 +2,8 @@ class HarnessLauncher < Formula
   desc "Profile-aware Zsh launcher for AI coding CLIs"
   homepage "https://github.com/kilhyeonjun/harness-launcher"
   url "https://github.com/kilhyeonjun/harness-launcher.git",
-      tag:      "v0.37.5",
-      revision: "06cbd0fcfdfa5a2280bd8bfb0baed84eb54890ab"
+      tag:      "v0.38.0",
+      revision: "0a9d3ae1d98dd18d2f71559545111e609bd76cd4"
   license "MIT"
 
   depends_on :macos
@@ -41,6 +41,8 @@ class HarnessLauncher < Formula
     pkgshare.install "bin/harness-profile"
     pkgshare.install "bin/session-isolation.sh"
     pkgshare.install "bin/harness-session-provider-record"
+    pkgshare.install "bin/harness-launch-record"
+    pkgshare.install "bin/harness-restore-probe"
     (pkgshare/"docs").install "docs/orca-integration.md"
     (pkgshare/"docs").install "docs/paseo-integration.md"
     (pkgshare/"docs").install "docs/terminal-runtimes.md"
@@ -65,6 +67,8 @@ class HarnessLauncher < Formula
     chmod 0755, pkgshare/"harness-profile"
     chmod 0755, pkgshare/"session-isolation.sh"
     chmod 0755, pkgshare/"harness-session-provider-record"
+    chmod 0755, pkgshare/"harness-launch-record"
+    chmod 0755, pkgshare/"harness-restore-probe"
     bin.install_symlink pkgshare/"harness-auto"
     bin.install_symlink pkgshare/"harness-codex"
     bin.install_symlink pkgshare/"harness-paseo"
@@ -106,6 +110,8 @@ class HarnessLauncher < Formula
     assert_predicate pkgshare/"codex-home-prepare.sh", :executable?
     assert_predicate pkgshare/"codex-surface.py", :executable?
     assert_predicate pkgshare/"codex-surface-warm.py", :executable?
+    assert_predicate pkgshare/"harness-launch-record", :executable?
+    assert_predicate pkgshare/"harness-restore-probe", :executable?
     assert_path_exists pkgshare/"codex_global_mcp.py"
     assert_path_exists pkgshare/"mcp_paths.py"
     assert_path_exists pkgshare/"orca_hooks_optin.py"
