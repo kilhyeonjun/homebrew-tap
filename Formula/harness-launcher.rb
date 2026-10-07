@@ -2,8 +2,8 @@ class HarnessLauncher < Formula
   desc "Profile-aware Zsh launcher for AI coding CLIs"
   homepage "https://github.com/kilhyeonjun/harness-launcher"
   url "https://github.com/kilhyeonjun/harness-launcher.git",
-      tag:      "v0.44.1",
-      revision: "6dc90682bf21a14848b2dadf11bb38ea602c4966"
+      tag:      "v0.45.0",
+      revision: "06088dad03f683c5765e95750f6e5b7815fbb412"
   license "MIT"
 
   depends_on :macos
@@ -57,6 +57,7 @@ class HarnessLauncher < Formula
       Isolated session recovery:
         harness-session list
         harness-session recover <uuid>
+        harness-session discard <uuid>   # retire an ABANDONED/CONFLICT session, keeping a patch
     EOS
   end
 
