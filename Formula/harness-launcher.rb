@@ -2,8 +2,8 @@ class HarnessLauncher < Formula
   desc "Profile-aware Zsh launcher for AI coding CLIs"
   homepage "https://github.com/kilhyeonjun/harness-launcher"
   url "https://github.com/kilhyeonjun/harness-launcher.git",
-      tag:      "v0.49.4",
-      revision: "b13f76f91221097b54a4a7e2e4c4ae6992d6711c"
+      tag:      "v0.50.0",
+      revision: "aa65001a6f1ad0d2484364b251c61391c1ea4c17"
   license "MIT"
 
   depends_on :macos
@@ -19,6 +19,7 @@ class HarnessLauncher < Formula
     (pkgshare/"docs").install "docs/paseo-integration.md"
     (pkgshare/"docs").install "docs/terminal-runtimes.md"
     (pkgshare/"docs").install "docs/herdr-web-ui.md"
+    (pkgshare/"docs").install "docs/session-collector.md"
     (pkgshare/"herdr-plugin").install "herdr-plugin/herdr-plugin.toml",
                                       "herdr-plugin/harness_herdr_plugin.py"
     bin.install_symlink pkgshare/"harness-auto"
@@ -78,6 +79,7 @@ class HarnessLauncher < Formula
     assert_path_exists pkgshare/"docs/paseo-integration.md"
     assert_path_exists pkgshare/"docs/terminal-runtimes.md"
     assert_path_exists pkgshare/"docs/herdr-web-ui.md"
+    assert_path_exists pkgshare/"docs/session-collector.md"
     assert_path_exists pkgshare/"herdr-plugin/herdr-plugin.toml"
     assert_path_exists pkgshare/"herdr-plugin/harness_herdr_plugin.py"
     assert_match 'id = "harness.launcher"', (pkgshare/"herdr-plugin/herdr-plugin.toml").read
