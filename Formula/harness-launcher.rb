@@ -2,8 +2,8 @@ class HarnessLauncher < Formula
   desc "Profile-aware Zsh launcher for AI coding CLIs"
   homepage "https://github.com/kilhyeonjun/harness-launcher"
   url "https://github.com/kilhyeonjun/harness-launcher.git",
-      tag:      "v0.51.0",
-      revision: "8ca97fee4697f06c0c2096608e47847db7bf2733"
+      tag:      "v0.52.0",
+      revision: "52c87890049ec32610548ddd461514e29d3a5340"
   license "MIT"
 
   depends_on :macos
@@ -20,6 +20,7 @@ class HarnessLauncher < Formula
     (pkgshare/"docs").install "docs/terminal-runtimes.md"
     (pkgshare/"docs").install "docs/herdr-web-ui.md"
     (pkgshare/"docs").install "docs/session-collector.md"
+    (pkgshare/"docs").install "docs/codex-history.md"
     (pkgshare/"herdr-plugin").install "herdr-plugin/herdr-plugin.toml",
                                       "herdr-plugin/harness_herdr_plugin.py"
     bin.install_symlink pkgshare/"harness-auto"
@@ -81,6 +82,9 @@ class HarnessLauncher < Formula
     assert_path_exists pkgshare/"docs/terminal-runtimes.md"
     assert_path_exists pkgshare/"docs/herdr-web-ui.md"
     assert_path_exists pkgshare/"docs/session-collector.md"
+    assert_path_exists pkgshare/"docs/codex-history.md"
+    assert_predicate pkgshare/"codex-history.py", :executable?
+    assert_path_exists pkgshare/"codex_history_native.py"
     assert_path_exists pkgshare/"herdr-plugin/herdr-plugin.toml"
     assert_path_exists pkgshare/"herdr-plugin/harness_herdr_plugin.py"
     assert_match 'id = "harness.launcher"', (pkgshare/"herdr-plugin/herdr-plugin.toml").read
