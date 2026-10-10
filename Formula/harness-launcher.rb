@@ -2,8 +2,8 @@ class HarnessLauncher < Formula
   desc "Profile-aware Zsh launcher for AI coding CLIs"
   homepage "https://github.com/kilhyeonjun/harness-launcher"
   url "https://github.com/kilhyeonjun/harness-launcher.git",
-      tag:      "v0.50.1",
-      revision: "73bec819f8c837d83446b00c3bd692a1065d2596"
+      tag:      "v0.51.0",
+      revision: "8ca97fee4697f06c0c2096608e47847db7bf2733"
   license "MIT"
 
   depends_on :macos
@@ -29,6 +29,7 @@ class HarnessLauncher < Formula
     bin.install_symlink pkgshare/"harness-exec"
     bin.install_symlink pkgshare/"harness-headless"
     bin.install_symlink pkgshare/"harness-profile"
+    bin.install_symlink pkgshare/"harness-plan"
     bin.install_symlink pkgshare/"session-isolation.sh" => "harness-session"
     bin.install_symlink pkgshare/"harness-session-provider-record"
   end
@@ -103,6 +104,11 @@ class HarnessLauncher < Formula
     assert_predicate pkgshare/"harness-headless", :executable?
     assert_path_exists pkgshare/"harness_headless.py"
     assert_predicate pkgshare/"harness-profile", :executable?
+    assert_predicate pkgshare/"harness-plan", :executable?
+    assert_path_exists pkgshare/"harness_launch_plan.py"
+    assert_path_exists pkgshare/"harness_session_archive.py"
+    assert_path_exists pkgshare/"harness_session_catalog.py"
+    assert_path_exists pkgshare/"harness_session_restore.py"
     assert_predicate pkgshare/"session-isolation.sh", :executable?
     assert_predicate pkgshare/"harness-session-provider-record", :executable?
     assert_predicate bin/"harness-auto", :symlink?
@@ -112,6 +118,7 @@ class HarnessLauncher < Formula
     assert_predicate bin/"harness-exec", :symlink?
     assert_predicate bin/"harness-headless", :symlink?
     assert_predicate bin/"harness-profile", :symlink?
+    assert_predicate bin/"harness-plan", :symlink?
     assert_predicate bin/"harness-session", :symlink?
     assert_predicate bin/"harness-session-provider-record", :symlink?
   end
