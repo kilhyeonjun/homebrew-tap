@@ -2,8 +2,8 @@ class HarnessLauncher < Formula
   desc "Profile-aware Zsh launcher for AI coding CLIs"
   homepage "https://github.com/kilhyeonjun/harness-launcher"
   url "https://github.com/kilhyeonjun/harness-launcher.git",
-      tag:      "v0.53.3",
-      revision: "9f5e0956f7f5df819d3e0482d9d384cc71f80130"
+      tag:      "v0.54.0",
+      revision: "f6bf983d66dc4b7ce962018ad71a16260f90cee1"
   license "MIT"
 
   depends_on :macos
@@ -72,6 +72,8 @@ class HarnessLauncher < Formula
     assert_predicate pkgshare/"codex-surface.py", :executable?
     assert_predicate pkgshare/"codex-surface-warm.py", :executable?
     assert_predicate pkgshare/"harness-launch-record", :executable?
+    assert_predicate pkgshare/"harness-workspace-choice", :executable?
+    assert_path_exists pkgshare/"harness_claude_fork.py"
     assert_predicate pkgshare/"harness-restore-probe", :executable?
     assert_path_exists pkgshare/"codex_global_mcp.py"
     assert_path_exists pkgshare/"mcp_paths.py"
