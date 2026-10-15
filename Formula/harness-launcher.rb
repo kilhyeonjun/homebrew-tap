@@ -2,8 +2,8 @@ class HarnessLauncher < Formula
   desc "Profile-aware Zsh launcher for AI coding CLIs"
   homepage "https://github.com/kilhyeonjun/harness-launcher"
   url "https://github.com/kilhyeonjun/harness-launcher.git",
-      tag:      "v0.56.0",
-      revision: "bb23343aff740de86da5f2a326c0be7b00a87880"
+      tag:      "v0.57.0",
+      revision: "5fdd409ed645b66716572bbe5326966cb8a874c5"
   license "MIT"
 
   depends_on :macos
@@ -21,6 +21,7 @@ class HarnessLauncher < Formula
     (pkgshare/"docs").install "docs/herdr-web-ui.md"
     (pkgshare/"docs").install "docs/session-collector.md"
     (pkgshare/"docs").install "docs/codex-history.md"
+    (pkgshare/"docs").install "docs/trusted-preservation.md"
     (pkgshare/"herdr-plugin").install "herdr-plugin/herdr-plugin.toml",
                                       "herdr-plugin/harness_herdr_plugin.py"
     bin.install_symlink pkgshare/"harness-auto"
@@ -33,6 +34,7 @@ class HarnessLauncher < Formula
     bin.install_symlink pkgshare/"harness-plan"
     bin.install_symlink pkgshare/"session-isolation.sh" => "harness-session"
     bin.install_symlink pkgshare/"harness-session-provider-record"
+    bin.install_symlink pkgshare/"harness-preserve"
   end
 
   def caveats
@@ -86,6 +88,7 @@ class HarnessLauncher < Formula
     assert_path_exists pkgshare/"docs/herdr-web-ui.md"
     assert_path_exists pkgshare/"docs/session-collector.md"
     assert_path_exists pkgshare/"docs/codex-history.md"
+    assert_path_exists pkgshare/"docs/trusted-preservation.md"
     assert_predicate pkgshare/"codex-history.py", :executable?
     assert_path_exists pkgshare/"codex_history_native.py"
     assert_path_exists pkgshare/"herdr-plugin/herdr-plugin.toml"
@@ -118,6 +121,10 @@ class HarnessLauncher < Formula
     assert_path_exists pkgshare/"harness_session_restore.py"
     assert_predicate pkgshare/"session-isolation.sh", :executable?
     assert_predicate pkgshare/"harness-session-provider-record", :executable?
+    assert_predicate pkgshare/"harness-preserve", :executable?
+    assert_path_exists pkgshare/"trusted_preservation.py"
+    assert_path_exists pkgshare/"preservation_snapshot.py"
+    assert_path_exists pkgshare/"git_policy.py"
     assert_predicate bin/"harness-auto", :symlink?
     assert_predicate bin/"harness-codex", :symlink?
     assert_predicate bin/"harness-paseo", :symlink?
@@ -128,5 +135,8 @@ class HarnessLauncher < Formula
     assert_predicate bin/"harness-plan", :symlink?
     assert_predicate bin/"harness-session", :symlink?
     assert_predicate bin/"harness-session-provider-record", :symlink?
+    assert_match "Usage:", shell_output("#{bin}/harness-preserve --help")
+    assert_match '"status": "rejected"', pipe_output("#{bin}/harness-preserve", "{}", 2)
+    assert_predicate bin/"harness-preserve", :symlink?
   end
 end
