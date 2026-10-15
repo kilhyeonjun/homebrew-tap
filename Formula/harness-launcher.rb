@@ -2,8 +2,8 @@ class HarnessLauncher < Formula
   desc "Profile-aware Zsh launcher for AI coding CLIs"
   homepage "https://github.com/kilhyeonjun/harness-launcher"
   url "https://github.com/kilhyeonjun/harness-launcher.git",
-      tag:      "v0.54.1",
-      revision: "68b0b23a18e1305571b040f107ebeae20712d30e"
+      tag:      "v0.55.0",
+      revision: "0cbc35aeba5b8046eb0fce831cb1020f7ddfef7f"
   license "MIT"
 
   depends_on :macos
@@ -76,6 +76,7 @@ class HarnessLauncher < Formula
     assert_path_exists pkgshare/"harness_claude_fork.py"
     assert_predicate pkgshare/"harness-restore-probe", :executable?
     assert_path_exists pkgshare/"codex_global_mcp.py"
+    assert_predicate pkgshare/"codex-plugin-inherit.py", :executable?
     assert_path_exists pkgshare/"mcp_paths.py"
     assert_path_exists pkgshare/"orca_hooks_optin.py"
     assert_path_exists pkgshare/"runtime_hooks_optin.py"
