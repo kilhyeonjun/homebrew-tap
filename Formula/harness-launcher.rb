@@ -2,8 +2,8 @@ class HarnessLauncher < Formula
   desc "Profile-aware Zsh launcher for AI coding CLIs"
   homepage "https://github.com/kilhyeonjun/harness-launcher"
   url "https://github.com/kilhyeonjun/harness-launcher.git",
-      tag:      "v0.58.0",
-      revision: "5ddbafb075437be7bb91ce75582e9f046e6c008b"
+      tag:      "v0.59.0",
+      revision: "c8fd058f13709332948f3a710db310a69f294be9"
   license "MIT"
 
   depends_on :macos
@@ -22,6 +22,7 @@ class HarnessLauncher < Formula
     (pkgshare/"docs").install "docs/session-collector.md"
     (pkgshare/"docs").install "docs/codex-history.md"
     (pkgshare/"docs").install "docs/trusted-preservation.md"
+    (pkgshare/"docs").install "docs/session-report.md"
     (pkgshare/"herdr-plugin").install "herdr-plugin/herdr-plugin.toml",
                                       "herdr-plugin/harness_herdr_plugin.py"
     bin.install_symlink pkgshare/"harness-auto"
@@ -89,6 +90,7 @@ class HarnessLauncher < Formula
     assert_path_exists pkgshare/"docs/session-collector.md"
     assert_path_exists pkgshare/"docs/codex-history.md"
     assert_path_exists pkgshare/"docs/trusted-preservation.md"
+    assert_path_exists pkgshare/"docs/session-report.md"
     assert_predicate pkgshare/"codex-history.py", :executable?
     assert_path_exists pkgshare/"codex_history_native.py"
     assert_path_exists pkgshare/"herdr-plugin/herdr-plugin.toml"
@@ -118,6 +120,7 @@ class HarnessLauncher < Formula
     assert_path_exists pkgshare/"harness_launch_plan.py"
     assert_path_exists pkgshare/"harness_session_archive.py"
     assert_path_exists pkgshare/"harness_session_catalog.py"
+    assert_path_exists pkgshare/"harness_session_report.py"
     assert_path_exists pkgshare/"harness_session_restore.py"
     assert_predicate pkgshare/"session-isolation.sh", :executable?
     assert_predicate pkgshare/"harness-session-provider-record", :executable?
@@ -134,6 +137,12 @@ class HarnessLauncher < Formula
     assert_predicate bin/"harness-profile", :symlink?
     assert_predicate bin/"harness-plan", :symlink?
     assert_predicate bin/"harness-session", :symlink?
+    with_env(HARNESS_SESSION_STATE_HOME: (testpath/"missing-session-state").to_s) do
+      report = JSON.parse(shell_output("#{bin}/harness-session report --json"))
+      assert_equal true, report["read_only"]
+      assert_equal "unknown", report["scan_status"]
+      refute_path_exists testpath/"missing-session-state"
+    end
     assert_predicate bin/"harness-session-provider-record", :symlink?
     assert_match "Usage:", shell_output("#{bin}/harness-preserve --help")
     assert_match '"status": "rejected"', pipe_output("#{bin}/harness-preserve", "{}", 2)
