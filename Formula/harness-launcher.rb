@@ -2,8 +2,8 @@ class HarnessLauncher < Formula
   desc "Profile-aware Zsh launcher for AI coding CLIs"
   homepage "https://github.com/kilhyeonjun/harness-launcher"
   url "https://github.com/kilhyeonjun/harness-launcher.git",
-      tag:      "v0.59.0",
-      revision: "c8fd058f13709332948f3a710db310a69f294be9"
+      tag:      "v0.60.0",
+      revision: "34a1d239d2eb84ddaab5dd607a4b6310b4f1338e"
   license "MIT"
 
   depends_on :macos
@@ -19,6 +19,10 @@ class HarnessLauncher < Formula
     (pkgshare/"docs").install "docs/paseo-integration.md"
     (pkgshare/"docs").install "docs/terminal-runtimes.md"
     (pkgshare/"docs").install "docs/herdr-web-ui.md"
+    (pkgshare/"docs").install "docs/herdr-agent-ui-request-cli.md"
+    (pkgshare/"docs").install "docs/herdr-lifecycle-cli.md"
+    (pkgshare/"docs").install "docs/herdr-pane-read-cli.md"
+    (pkgshare/"docs").install "docs/herdr-ui-answer-cli.md"
     (pkgshare/"docs").install "docs/session-collector.md"
     (pkgshare/"docs").install "docs/codex-history.md"
     (pkgshare/"docs").install "docs/trusted-preservation.md"
@@ -87,6 +91,10 @@ class HarnessLauncher < Formula
     assert_path_exists pkgshare/"docs/paseo-integration.md"
     assert_path_exists pkgshare/"docs/terminal-runtimes.md"
     assert_path_exists pkgshare/"docs/herdr-web-ui.md"
+    assert_path_exists pkgshare/"docs/herdr-agent-ui-request-cli.md"
+    assert_path_exists pkgshare/"docs/herdr-lifecycle-cli.md"
+    assert_path_exists pkgshare/"docs/herdr-pane-read-cli.md"
+    assert_path_exists pkgshare/"docs/herdr-ui-answer-cli.md"
     assert_path_exists pkgshare/"docs/session-collector.md"
     assert_path_exists pkgshare/"docs/codex-history.md"
     assert_path_exists pkgshare/"docs/trusted-preservation.md"
