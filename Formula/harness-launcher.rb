@@ -2,8 +2,8 @@ class HarnessLauncher < Formula
   desc "Profile-aware Zsh launcher for AI coding CLIs"
   homepage "https://github.com/kilhyeonjun/harness-launcher"
   url "https://github.com/kilhyeonjun/harness-launcher.git",
-      tag:      "v0.67.0",
-      revision: "658d36850d68e4dc32aed0e13b9c92d5e222c745"
+      tag:      "v0.68.0",
+      revision: "bc170299ecee6f567e5bc63785c289e9461eb2a6"
   license "MIT"
 
   depends_on :macos
