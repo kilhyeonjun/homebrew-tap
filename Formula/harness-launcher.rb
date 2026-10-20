@@ -2,8 +2,8 @@ class HarnessLauncher < Formula
   desc "Profile-aware Zsh launcher for AI coding CLIs"
   homepage "https://github.com/kilhyeonjun/harness-launcher"
   url "https://github.com/kilhyeonjun/harness-launcher.git",
-      tag:      "v0.69.0",
-      revision: "8eaadec04e9e3bc3ab43df62778d7ea849f687cc"
+      tag:      "v0.70.0",
+      revision: "aa7afc038e235590b8bdfaa1a3820c41dc4a0b28"
   license "MIT"
 
   depends_on :macos
@@ -27,6 +27,7 @@ class HarnessLauncher < Formula
     (pkgshare/"docs").install "docs/codex-history.md"
     (pkgshare/"docs").install "docs/trusted-preservation.md"
     (pkgshare/"docs").install "docs/session-report.md"
+    (pkgshare/"docs").install "docs/session-creation.md"
     (pkgshare/"herdr-plugin").install "herdr-plugin/herdr-plugin.toml",
                                       "herdr-plugin/harness_herdr_plugin.py"
     bin.install_symlink pkgshare/"harness-auto"
@@ -81,6 +82,7 @@ class HarnessLauncher < Formula
     assert_predicate pkgshare/"harness-launch-record", :executable?
     assert_predicate pkgshare/"harness-workspace-choice", :executable?
     assert_path_exists pkgshare/"harness_claude_fork.py"
+    assert_path_exists pkgshare/"harness_session_creation.py"
     assert_predicate pkgshare/"harness-restore-probe", :executable?
     assert_path_exists pkgshare/"codex_global_mcp.py"
     assert_predicate pkgshare/"codex-plugin-inherit.py", :executable?
@@ -99,6 +101,7 @@ class HarnessLauncher < Formula
     assert_path_exists pkgshare/"docs/codex-history.md"
     assert_path_exists pkgshare/"docs/trusted-preservation.md"
     assert_path_exists pkgshare/"docs/session-report.md"
+    assert_path_exists pkgshare/"docs/session-creation.md"
     assert_predicate pkgshare/"codex-history.py", :executable?
     assert_path_exists pkgshare/"codex_history_native.py"
     assert_path_exists pkgshare/"herdr-plugin/herdr-plugin.toml"
