@@ -3,7 +3,7 @@ class HarnessLauncher < Formula
   homepage "https://github.com/kilhyeonjun/harness-launcher"
   url "https://github.com/kilhyeonjun/harness-launcher.git",
       tag:      "v0.71.0",
-      revision: "94b9c6c5103f9cfd8f26c0eec09e65b3f93f1a08"
+      revision: "338958f7b9c4ab9abb5270511d99bd2d2f2c3c5b"
   license "MIT"
 
   depends_on :macos
