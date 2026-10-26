@@ -2,8 +2,8 @@ class HarnessLauncher < Formula
   desc "Profile-aware Zsh launcher for AI coding CLIs"
   homepage "https://github.com/kilhyeonjun/harness-launcher"
   url "https://github.com/kilhyeonjun/harness-launcher.git",
-      tag:      "v0.77.8",
-      revision: "3ce891197185466993f403653969bad083650ffe"
+      tag:      "v0.78.0",
+      revision: "7990b557f939d2846cf771eb3bdec8fea46b37ab"
   license "MIT"
 
   depends_on :macos
@@ -29,6 +29,7 @@ class HarnessLauncher < Formula
     (pkgshare/"docs").install "docs/session-report.md"
     (pkgshare/"docs").install "docs/session-creation.md"
     (pkgshare/"docs").install "docs/session-integration-queue.md"
+    (pkgshare/"docs").install "docs/canonical-update.md"
     (pkgshare/"herdr-plugin").install "herdr-plugin/herdr-plugin.toml",
                                       "herdr-plugin/harness_herdr_plugin.py"
     bin.install_symlink pkgshare/"harness-auto"
@@ -38,6 +39,7 @@ class HarnessLauncher < Formula
     bin.install_symlink pkgshare/"harness-exec"
     bin.install_symlink pkgshare/"harness-headless"
     bin.install_symlink pkgshare/"harness-profile"
+    bin.install_symlink pkgshare/"harness-canonical-update"
     bin.install_symlink pkgshare/"harness-plan"
     bin.install_symlink pkgshare/"session-isolation.sh" => "harness-session"
     bin.install_symlink pkgshare/"harness-session-provider-record"
